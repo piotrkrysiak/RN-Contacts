@@ -1,8 +1,9 @@
 import React from 'react';
-import {Text} from 'react-native';
+import 'react-native-gesture-handler';
+import AppNavContainer from './src/navigations';
 
 const App = () => {
-  return <Text>Hello word</Text>;
+  return <AppNavContainer></AppNavContainer>;
 };
 
 export default App;
