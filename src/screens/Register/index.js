@@ -1,15 +1,18 @@
 import React from 'react';
+import {useEffect} from 'react';
 import {useState} from 'react';
 import RegisterComponent from '../../components/Signup';
-import envs from '../../config/env';
+import axiosInstance from '../../helpers/axiosIntreceptor';
 
 const SingUp = () => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  const {BACKEND_URL} = envs;
 
-  console.log("Backend url:>>", BACKEND_URL)
-  console.log("dev", __DEV__)
+  useEffect(() => {
+    axiosInstance.get('/contacts').catch(err => {
+      console.log('err', err.response);
+    });
+  }, []);
 
   const onChange = ({name, value}) => {
     setForm({
