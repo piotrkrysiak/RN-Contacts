@@ -1,10 +1,15 @@
 import React from 'react';
 import {useState} from 'react';
 import RegisterComponent from '../../components/Signup';
+import envs from '../../config/env';
 
 const SingUp = () => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  const {BACKEND_URL} = envs;
+
+  console.log("Backend url:>>", BACKEND_URL)
+  console.log("dev", __DEV__)
 
   const onChange = ({name, value}) => {
     setForm({
