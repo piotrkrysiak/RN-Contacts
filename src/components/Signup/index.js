@@ -8,7 +8,7 @@ import logo from '../../assets/images/logo.png';
 import {LOGIN} from '../../constants/routeNames';
 import styles from './styles';
 
-const RegisterComponent = () => {
+const RegisterComponent = ({form, errors, onSubmit, onChange}) => {
   const {navigate} = useNavigation();
 
   return (
@@ -23,34 +23,40 @@ const RegisterComponent = () => {
           label="Username"
           iconPosition="right"
           placeholder="Enter Username"
-          // error={'this field is required'}
+          onChangeText={value => onChange({name: 'userName', value})}
+          error={errors.userName}
         />
         <Input
           label="First Name"
           iconPosition="right"
           placeholder="Enter First Name"
-          // error={'this field is required'}
+          onChangeText={value => onChange({name: 'firstName', value})}
+          error={errors.firstName}
         />
         <Input
           label="Last Name"
           iconPosition="right"
           placeholder="Enter Last Name"
-          // error={'this field is required'}
+          onChangeText={value => onChange({name: 'lastName', value})}
+          error={errors.lastName}
         />
         <Input
           label="Email"
           iconPosition="right"
           placeholder="Enter Email"
-          // error={'this field is required'}
+          onChangeText={value => onChange({name: 'email', value})}
+          error={errors.email}
         />
         <Input
           label="Password"
           icon={<Text>Show</Text>}
           iconPosition="right"
           placeholder="Enter Password"
+          onChangeText={value => onChange({name: 'password', value})}
           secureTextEntry={true}
+          error={errors.password}
         />
-        <CustomButton primary title="Submit" />
+        <CustomButton onPress={onSubmit} primary title="Submit" />
       </View>
       <View>
         <View style={styles.createSection}>
