@@ -11,7 +11,7 @@ const AppNavContainer = () => {
     authState: {isLoggedIn},
   } = useContext(GlobalContext);
 
-  const [isAutenticated, setIsAutenticated] = useState(false);
+  const [isAutenticated, setIsAutenticated] = useState(isLoggedIn);
   const [authLoaded, setAuthLoaded] = useState(false);
 
   const getUser = async () => {
@@ -31,20 +31,16 @@ const AppNavContainer = () => {
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <>
       {authLoaded ? (
         <NavigationContainer>
-          {isLoggedIn || isAutenticated ? (
-            <DrawerNavigator />
-          ) : (
-            <AuthNavigator />
-          )}
+          {isAutenticated ? <DrawerNavigator /> : <AuthNavigator />}
         </NavigationContainer>
       ) : (
-        <ActivityIndicator/>
+        <ActivityIndicator />
       )}
     </>
   );

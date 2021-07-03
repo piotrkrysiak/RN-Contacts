@@ -3,6 +3,7 @@ import {
   LOGIN_FAIL,
   LOGIN_LOADING,
   LOGIN_SUCCESS,
+  LOGOUT_USER,
   REGISTER_FAIL,
   REGISTER_LOADING,
   REGISTER_SUCCESS,
@@ -43,7 +44,13 @@ const auth = (state, {type, payload}) => {
         data: null,
         error: null,
       };
-
+    case LOGOUT_USER:
+      return {
+        ...state,
+        loading: false,
+        data: null,
+        isLoggedIn: false,
+      };
     default:
       return state;
   }
