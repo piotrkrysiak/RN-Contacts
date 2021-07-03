@@ -7,6 +7,7 @@ import Input from '../common/Input';
 import logo from '../../assets/images/logo.png';
 import {LOGIN} from '../../constants/routeNames';
 import styles from './styles';
+import Message from '../common/Message';
 
 const RegisterComponent = ({
   form,
@@ -26,7 +27,16 @@ const RegisterComponent = ({
         <Text style={styles.subTitle}>Create a free account</Text>
       </View>
       <View style={styles.form}>
-        {error?.error && <Text>{error.error}</Text>}
+        {error?.error && (
+          <Message
+            danger
+            retry
+            retryFn={() => {
+              console.log('RetryFn');
+            }}
+            message={error?.error}
+          />
+        )}
         <Input
           label="Username"
           iconPosition="right"
@@ -40,21 +50,21 @@ const RegisterComponent = ({
           placeholder="Enter First Name"
           onChangeText={value => onChange({name: 'firstName', value})}
           error={errors.firstName || error?.first_name?.[0]}
-          />
+        />
         <Input
           label="Last Name"
           iconPosition="right"
           placeholder="Enter Last Name"
           onChangeText={value => onChange({name: 'lastName', value})}
           error={errors.lastName || error?.last_name?.[0]}
-          />
+        />
         <Input
           label="Email"
           iconPosition="right"
           placeholder="Enter Email"
           onChangeText={value => onChange({name: 'email', value})}
           error={errors.email || error?.email?.[0]}
-          />
+        />
         <Input
           label="Password"
           icon={<Text>Show</Text>}
@@ -63,7 +73,7 @@ const RegisterComponent = ({
           onChangeText={value => onChange({name: 'password', value})}
           secureTextEntry={true}
           error={errors.password || error?.password?.[0]}
-          />
+        />
         {console.log('error', error)}
         <CustomButton
           loading={loading}

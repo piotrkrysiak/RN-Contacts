@@ -4,6 +4,7 @@ import {Text, Image, View, TouchableOpacity} from 'react-native';
 import Container from '../common/Container';
 import CustomButton from '../common/CustomButton';
 import Input from '../common/Input';
+import Message from '../common/Message';
 import logo from '../../assets/images/logo.png';
 import styles from './styles';
 import {REGISTER} from '../../constants/routeNames';
@@ -17,6 +18,18 @@ const LoginComponent = () => {
       <View>
         <Text style={styles.title}>Welcome to RNContacts</Text>
         <Text style={styles.subTitle}>Please login here</Text>
+        <Message
+          retry
+          retryFn={() => {
+            console.log('222');
+          }}
+          primary
+          onDismiss={() => {}}
+          message="Invalid"
+        />
+        <Message danger message="err" onDismiss={() => {}} />
+        <Message info message="info" onDismiss={() => {}} />
+        <Message success message="success" onDismiss={() => {}} />
       </View>
       <View style={styles.form}>
         <Input
