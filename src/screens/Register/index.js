@@ -11,10 +11,10 @@ const SingUp = () => {
   const [errors, setErrors] = useState({});
   const {navigate} = useNavigation();
   const {
-    authDispach,
+    authDispatch,
     authState: {error, loading, data},
   } = useContext(GlobalContext);
-  //console.log("auth", authDispach); console.log('authstate.error', error);
+  //console.log("auth", authDispatch); console.log('authstate.error', error);
 
   useEffect(() => {
     if (data) {
@@ -26,7 +26,7 @@ const SingUp = () => {
     useCallback(() => {
       return () => {
         if (data || error) {
-          clearAuthState()(authDispach);
+          clearAuthState()(authDispatch);
         }
       };
     }, [data, error]),
@@ -96,7 +96,7 @@ const SingUp = () => {
       Object.values(form).every(item => item.trim().length > 0) &&
       Object.values(errors).every(item => !item)
     ) {
-      register(form)(authDispach);
+      register(form)(authDispatch);
     }
   };
 

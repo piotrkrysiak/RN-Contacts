@@ -6,13 +6,13 @@ import {GlobalContext} from '../../context/Provider';
 const Login = () => {
   const [form, setForm] = useState({});
   const {
-    authDispach,
+    authDispatch,
     authState: {error, loading},
   } = useContext(GlobalContext);
 
   const onSubmit = () => {
     if (form.userName && form.password) {
-      loginUser(form)(authDispach);
+      loginUser(form)(authDispatch);
     }
   };
 

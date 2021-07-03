@@ -13,7 +13,7 @@ import styles from './styles';
 import {SETTINGS} from '../../constants/routeNames';
 import logoutUser from '../../context/actions/auth/logoutUser';
 
-const SideMenu = ({navigation, authDispach}) => {
+const SideMenu = ({navigation, authDispatch}) => {
   const handleLogout = () => {
     navigation.toggleDrawer();
     Alert.alert('Logout!', 'Are you sure you want to logout?', [
@@ -25,7 +25,7 @@ const SideMenu = ({navigation, authDispach}) => {
       {
         text: 'OK',
         onPress: () => {
-          logoutUser()(authDispach);
+          logoutUser()(authDispatch);
         },
       },
     ]);
