@@ -1,18 +1,35 @@
-import React from 'react';
-import {useEffect} from 'react';
-import {useState} from 'react';
+import React, {useState, useEffect, useCallback, useContext} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import RegisterComponent from '../../components/Signup';
-import axiosInstance from '../../helpers/axiosIntreceptor';
+import register, {clearAuthState} from '../../context/actions/auth/register';
+import {GlobalContext} from '../../context/Provider';
+import {LOGIN} from '../../constants/routeNames';
+import {useNavigation} from '@react-navigation/native';
 
 const SingUp = () => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  const {navigate} = useNavigation();
+  const {
+    authDispach,
+    authState: {error, loading, data},
+  } = useContext(GlobalContext);
+  //console.log("auth", authDispach); console.log('authstate.error', error);
+
 
   useEffect(() => {
-    axiosInstance.get('/contacts').catch(err => {
-      console.log('err', err.response);
-    });
-  }, []);
+    if (data) {
+      navigate(LOGIN);
+    }
+  }, [data]);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (data || error) {
+        clearAuthState()(authDispach);
+      }
+    }, [data, error]),
+  );
 
   const onChange = ({name, value}) => {
     setForm({
@@ -72,6 +89,14 @@ const SingUp = () => {
         return {...prev, password: 'Please add Password'};
       });
     }
+
+    if (
+      Object.values(form).length === 5 &&
+      Object.values(form).every(item => item.trim().length > 0) &&
+      Object.values(errors).every(item => !item)
+    ) {
+      register(form)(authDispach);
+    }
   };
 
   return (
@@ -80,6 +105,8 @@ const SingUp = () => {
       onChange={onChange}
       form={form}
       errors={errors}
+      error={error}
+      loading={loading}
     />
   );
 };
