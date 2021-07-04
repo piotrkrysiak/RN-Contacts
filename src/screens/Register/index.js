@@ -17,6 +17,7 @@ const SingUp = () => {
   //console.log("auth", authDispatch); console.log('authstate.error', error);
 
   useEffect(() => {
+    console.log('UseEffect data:', data)
     if (data) {
       navigate(LOGIN);
     }
@@ -24,8 +25,10 @@ const SingUp = () => {
 
   useFocusEffect(
     useCallback(() => {
+      console.log('UseFocus: ', data);
       return () => {
         if (data || error) {
+          console.log('UseFocus clenup: ', data);
           clearAuthState()(authDispatch);
         }
       };

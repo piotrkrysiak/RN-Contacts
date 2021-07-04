@@ -8,6 +8,7 @@ import logo from '../../assets/images/logo.png';
 import {LOGIN} from '../../constants/routeNames';
 import styles from './styles';
 import Message from '../common/Message';
+import { useState } from 'react';
 
 const RegisterComponent = ({
   form,
@@ -18,6 +19,7 @@ const RegisterComponent = ({
   onChange,
 }) => {
   const {navigate} = useNavigation();
+  const [isSecureEntry, setIsSecureEntry] = useState(true);
 
   return (
     <Container>
@@ -67,11 +69,18 @@ const RegisterComponent = ({
         />
         <Input
           label="Password"
-          icon={<Text>Show</Text>}
+          icon={
+            <TouchableOpacity
+              onPress={() => {
+                setIsSecureEntry(prev => !prev);
+              }}>
+              <Text>{isSecureEntry ? 'Show' : 'Hide'}</Text>
+            </TouchableOpacity>
+          }
           iconPosition="right"
           placeholder="Enter Password"
           onChangeText={value => onChange({name: 'password', value})}
-          secureTextEntry={true}
+          secureTextEntry={isSecureEntry}
           error={errors.password || error?.password?.[0]}
         />
         {console.log('error', error)}

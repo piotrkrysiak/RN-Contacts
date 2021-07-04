@@ -8,9 +8,12 @@ import Message from '../common/Message';
 import logo from '../../assets/images/logo.png';
 import styles from './styles';
 import {REGISTER} from '../../constants/routeNames';
+import {useState} from 'react';
 
 const LoginComponent = ({form, loading, error, onSubmit, onChange}) => {
   const {navigate} = useNavigation();
+
+  const [isSecureEntry, setIsSecureEntry] = useState(true);
 
   return (
     <Container>
@@ -47,10 +50,17 @@ const LoginComponent = ({form, loading, error, onSubmit, onChange}) => {
         />
         <Input
           label="Password"
-          icon={<Text>Show</Text>}
+          icon={
+            <TouchableOpacity
+              onPress={() => {
+                setIsSecureEntry(prev => !prev);
+              }}>
+              <Text>{isSecureEntry ? 'Show' : 'Hide'}</Text>
+            </TouchableOpacity>
+          }
           iconPosition="right"
           placeholder="Enter Password"
-          secureTextEntry={true}
+          secureTextEntry={isSecureEntry}
           onChangeText={value => onChange({name: 'password', value})}
         />
         <CustomButton
