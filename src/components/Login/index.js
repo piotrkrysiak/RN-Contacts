@@ -10,7 +10,14 @@ import styles from './styles';
 import {REGISTER} from '../../constants/routeNames';
 import {useState} from 'react';
 
-const LoginComponent = ({form, loading, error, onSubmit, onChange}) => {
+const LoginComponent = ({
+  form,
+  loading,
+  justSignedUp,
+  error,
+  onSubmit,
+  onChange,
+}) => {
   const {navigate} = useNavigation();
 
   const [isSecureEntry, setIsSecureEntry] = useState(true);
@@ -22,6 +29,13 @@ const LoginComponent = ({form, loading, error, onSubmit, onChange}) => {
         <Text style={styles.title}>Welcome to RNContacts</Text>
         <Text style={styles.subTitle}>Please login here</Text>
       </View>
+      {justSignedUp && (
+        <Message
+          success
+          onDismiss={() => {}}
+          message="Account created succesfully"
+        />
+      )}
       {error && !error?.error && (
         <Message
           danger
@@ -46,6 +60,7 @@ const LoginComponent = ({form, loading, error, onSubmit, onChange}) => {
           label="Ussername"
           iconPosition="right"
           placeholder="Enter Username"
+          value={form.userName || null}
           onChangeText={value => onChange({name: 'userName', value})}
         />
         <Input

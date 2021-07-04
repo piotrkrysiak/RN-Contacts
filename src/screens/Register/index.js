@@ -16,13 +16,6 @@ const SingUp = () => {
   } = useContext(GlobalContext);
   //console.log("auth", authDispatch); console.log('authstate.error', error);
 
-  useEffect(() => {
-    console.log('UseEffect data:', data)
-    if (data) {
-      navigate(LOGIN);
-    }
-  }, [data]);
-
   useFocusEffect(
     useCallback(() => {
       console.log('UseFocus: ', data);
@@ -99,7 +92,9 @@ const SingUp = () => {
       Object.values(form).every(item => item.trim().length > 0) &&
       Object.values(errors).every(item => !item)
     ) {
-      register(form)(authDispatch);
+      register(form)(authDispatch)((response) => {
+        navigate(LOGIN, {data: response});
+      });
     }
   };
 
