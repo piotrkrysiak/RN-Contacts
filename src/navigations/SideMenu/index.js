@@ -12,6 +12,7 @@ import logo from '../../assets/images/logo.png';
 import styles from './styles';
 import {SETTINGS} from '../../constants/routeNames';
 import logoutUser from '../../context/actions/auth/logoutUser';
+import Icon from '../../components/common/Icon';
 
 const SideMenu = ({navigation, authDispatch}) => {
   const handleLogout = () => {
@@ -33,14 +34,14 @@ const SideMenu = ({navigation, authDispatch}) => {
 
   const menuItems = [
     {
-      icon: <Text>T</Text>,
+      icon: <Icon type="material" name="settings" size={17} />,
       name: 'Settings',
       onPress: () => {
         navigation.navigate(SETTINGS);
       },
     },
     {
-      icon: <Text>T</Text>,
+      icon: <Icon type="material" name="logout" size={17} />,
       name: 'Logout',
       onPress: handleLogout,
     },

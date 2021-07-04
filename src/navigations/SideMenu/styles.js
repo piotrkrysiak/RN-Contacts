@@ -10,7 +10,7 @@ export default StyleSheet.create({
   item: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingLeft: 70,
   },
   itemText: {
     fontSize: 17,
