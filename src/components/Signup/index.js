@@ -8,7 +8,7 @@ import logo from '../../assets/images/logo.png';
 import {LOGIN} from '../../constants/routeNames';
 import styles from './styles';
 import Message from '../common/Message';
-import { useState } from 'react';
+import {useState} from 'react';
 
 const RegisterComponent = ({
   form,

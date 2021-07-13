@@ -4,6 +4,7 @@ import {useEffect} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import Container from '../../components/common/Container';
 import Icon from '../../components/common/Icon';
+import styles from './styles';
 
 const Contacts = () => {
   const {setOptions, toggleDrawer} = useNavigation();
@@ -14,11 +15,16 @@ const Contacts = () => {
           onPress={() => {
             toggleDrawer();
           }}>
-          <Icon type="material" size={25} name="menu" style={{padding: 10}} />
+          <Icon
+            type="material"
+            size={25}
+            name="menu"
+            style={styles.iconPadding}
+          />
         </TouchableOpacity>
       ),
     });
-  }, []);
+  }, [setOptions, toggleDrawer]);
   return (
     <Container>
       <Text>Hi form contact</Text>

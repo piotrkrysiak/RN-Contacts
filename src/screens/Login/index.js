@@ -16,7 +16,7 @@ const Login = () => {
       setJustSignedUp(true);
       setForm({...form, userName: params.data.username});
     }
-  }, [params]);
+  }, [params, form]);
 
   const {
     authDispatch,

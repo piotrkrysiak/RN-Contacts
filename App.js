@@ -6,7 +6,7 @@ import AppNavContainer from './src/navigations';
 const App = () => {
   return (
     <GlobalProvider>
-      <AppNavContainer/>
+      <AppNavContainer />
     </GlobalProvider>
   );
 };

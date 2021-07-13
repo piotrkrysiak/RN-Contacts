@@ -19,9 +19,7 @@ const DrawerNavigator = () => {
       drawerContent={({navigation}) =>
         getDrawerContent(navigation, authDispatch)
       }>
-      <Drawer.Screen
-        name={HOME_NAVIGATOR}
-        component={HomeNavigator}></Drawer.Screen>
+      <Drawer.Screen name={HOME_NAVIGATOR} component={HomeNavigator} />
     </Drawer.Navigator>
   );
 };

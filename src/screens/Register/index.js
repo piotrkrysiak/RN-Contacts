@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, useContext} from 'react';
+import React, {useState, useCallback, useContext} from 'react';
 import {useFocusEffect} from '@react-navigation/native';
 import RegisterComponent from '../../components/Signup';
 import register, {clearAuthState} from '../../context/actions/auth/register';
@@ -25,7 +25,7 @@ const SingUp = () => {
           clearAuthState()(authDispatch);
         }
       };
-    }, [data, error]),
+    }, [data, error, authDispatch]),
   );
 
   const onChange = ({name, value}) => {
@@ -92,7 +92,7 @@ const SingUp = () => {
       Object.values(form).every(item => item.trim().length > 0) &&
       Object.values(errors).every(item => !item)
     ) {
-      register(form)(authDispatch)((response) => {
+      register(form)(authDispatch)(response => {
         navigate(LOGIN, {data: response});
       });
     }
